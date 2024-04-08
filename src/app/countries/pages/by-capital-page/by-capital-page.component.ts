@@ -1,4 +1,6 @@
+import { Country } from './../../interfaces/country.interface';
 import { Component } from '@angular/core';
+import { CountriesService } from '../../services/countries.service';
 
 @Component({
   selector: 'countries-by-capital-page',
@@ -6,8 +8,12 @@ import { Component } from '@angular/core';
   styleUrl: './by-capital-page.component.css'
 })
 export class ByCapitalPageComponent {
+
+  constructor(private Sv_Countries : CountriesService){}
+
+  public Countries : Country[] = [];
+
   searchByCapital(term : string):void{
-    console.log("Desde By Capital");
-    console.log(term);
+    this.Sv_Countries.searchCapital(term).subscribe( Countries=>{this.Countries = Countries});
   }
 }
