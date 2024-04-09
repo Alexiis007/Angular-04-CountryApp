@@ -3,7 +3,7 @@
 <div class="row">
   <div class="col">
     <!-- todo search box -->
-    <shared-search-box placeholder="Search by Country" (OnValue)="searchByCountry($event)"></shared-search-box>
+    <shared-search-box [valueInit]="termInit" placeholder="Search by Country" (OnDebounce)="searchByCountry($event)"></shared-search-box>
   </div>
 </div>
 <div class="row">

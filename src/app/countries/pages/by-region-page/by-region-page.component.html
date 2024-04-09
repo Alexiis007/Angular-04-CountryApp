@@ -3,7 +3,8 @@
 <div class="row">
   <div class="col">
     <!-- todo search box -->
-    <shared-search-box placeholder="Search by Region" (OnValue)="searchByRegion($event)"></shared-search-box>
+    <!-- <shared-search-box placeholder="Search by Region" (OnDebounce)="searchByRegion($event)"></shared-search-box> -->
+    <button [ngClass]="{'btn-outline-primary' : selectedRegion == region}" *ngFor="let region of regions" class="btn mx-2" (click)="searchByRegion(region)">{{region}}</button>
   </div>
 </div>
 <div class="row">

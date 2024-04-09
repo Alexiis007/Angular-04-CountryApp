@@ -3,12 +3,13 @@
 <div class="row">
   <div class="col">
     <!-- todo search box -->
-    <shared-search-box placeholder="Search by capital" (OnValue)="searchByCapital($event)"></shared-search-box>
+    <shared-search-box [valueInit]="termInit" placeholder="Search by capital" #SearchBox (OnDebounce)="searchByCapital($event)"></shared-search-box>
   </div>
 </div>
 <div class="row">
   <div class="col">
     <hr>
+    <shared-loading-spinner *ngIf="isLoading"></shared-loading-spinner>
     <country-table [countries]="Countries"></country-table>
   </div>
 </div>
