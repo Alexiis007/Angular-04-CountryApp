@@ -12,20 +12,24 @@ export class CountriesService {
 
   apiURL:string='https://restcountries.com/v3.1';
 
+  private getCountriesRequest(URL:string):Observable<Country[]>{
+    return this.http.get<Country[]>(`${URL}`).pipe( catchError( error => of([])));
+  }
+
   searchCapital( term : string):Observable<Country[]>{
-    return this.http.get<Country[]>(`${this.apiURL}/capital/${term}`).pipe( catchError( error => of([])));
+    return this.getCountriesRequest(`${this.apiURL}/capital/${term}`);
   }
 
   searchRegion( term : string):Observable<Country[]>{
-    return this.http.get<Country[]>(`${this.apiURL}/region/${term}`).pipe( catchError( error => of([])));
+    return this.getCountriesRequest(`${this.apiURL}/region/${term}`);
   }
 
   searchCountry( term : string):Observable<Country[]>{
-    return this.http.get<Country[]>(`${this.apiURL}/name/${term}`).pipe( catchError( error => of([])));
+    return this.getCountriesRequest(`${this.apiURL}/name/${term}`);
   }
 
   searchByAlphaCode( term : string):Observable<Country | null>{
-    return this.http.get<Country[]>(`${this.apiURL}/alpha/${term}`)
+    return this.getCountriesRequest(`${this.apiURL}/alpha/${term}`)
       .pipe(
         map(resultado => resultado.length > 0 ? resultado[0] : null ),
         catchError( error => of(null)));
